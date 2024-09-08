@@ -44,19 +44,19 @@ This guide will help you set up the environment and run the chatbot application.
    * Within your Firebase project, create a Firestore collection and note down its name (needed for environment variables).
    * Install the Google Cloud CLI following instructions here: [Link to Google Cloud CLI installation]
    * Authenticate the Google Cloud CLI with your Google account:
-      ** Run the following commands in your terminal:
+      - Run the following commands in your terminal:
          ```bash
          gcloud init
          gcloud auth application-default login
          ```
-      ** Follow steps outlined here to authenticate with your Google account: [Link to Google Cloud authentication]
+      - Follow steps outlined here to authenticate with your Google account: [Link to Google Cloud authentication]
    * Set your default project to the newly created Firebase project:
       ```bash
       gcloud config set project <Your GCP Project ID>
       ```
    * Enable the Firestore API in the Google Cloud Console:
-      ** Navigate to [Link to Google Cloud Console APIs]
-      ** Search for "Firestore API" and enable it for your project.
+      - Navigate to [Link to Google Cloud Console APIs]
+      - Search for "Firestore API" and enable it for your project.
 
 5. **Configure Environment Variables:**
 
