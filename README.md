@@ -36,29 +36,29 @@ This guide will help you set up the environment and run the chatbot application.
 3. **Set up Google Authentication:**
 
    * The UI utilizes Google Auth for security.
-   * If you are new to Google Auth, Refer to the YouTube tutorial to configure Google Auth for Flask: https://www.youtube.com/watch?v=FKgJEfrhU1E
+   * If you are new to Google Auth, Refer to the YouTube tutorial to configure Google Auth for Flask: [https://www.youtube.com/watch?v=FKgJEfrhU1E]
    * Download your Google credentials JSON file and rename it to `google_client_secret.json`.
    * Note down your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (needed for step 5).
 
 4. **Configure Firestore Database:**
 
-   * Create a Firebase account at [Link to Firebase Console].
+   * Create a Firebase account at [https://console.cloud.google.com/] (Choose Firestore)
    * Create a new Firebase project and note down the `Project ID` (required for environment variables in step 5).
    * Within your Firebase project, create a Firestore collection and note down its name (needed for environment variables).
-   * Install the Google Cloud CLI following instructions here: [Link to Google Cloud CLI installation]
+   * Install the Google Cloud CLI following instructions here: [https://cloud.google.com/sdk/docs/install]
    * Authenticate the Google Cloud CLI with your Google account:
       - Run the following commands in your terminal:
          ```bash
          gcloud init
          gcloud auth application-default login
          ```
-      - Follow steps outlined here to authenticate with your Google account: [Link to Google Cloud authentication]
+      - Follow steps outlined here to authenticate with your Google account: [https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev]
    * Set your default project to the newly created Firebase project:
       ```bash
       gcloud config set project <Your GCP Project ID>
       ```
    * Enable the Firestore API in the Google Cloud Console:
-      - Navigate to [Link to Google Cloud Console APIs]
+      - Navigate to [https://console.cloud.google.com/apis/enableflow?apiid=firestore.googleapis.com&project=crewai-automation]
       - Search for "Firestore API" and enable it for your project.
 
 5. **Configure Environment Variables:**
@@ -67,7 +67,7 @@ This guide will help you set up the environment and run the chatbot application.
    * Set the following environment variables within the `.env` file:
       - `GOOGLE_CLIENT_ID`: Your Google client ID from step 3d.
       - `GOOGLE_CLIENT_SECRET`: Your Google client secret from step 3d.
-      - `REDIRECT_URI` : For localhost it should be something like "http://127.0.0.1:5000/callback"
+      - `REDIRECT_URI` : For localhost it should be something like [http://127.0.0.1:5000/callback]
       - `OPENAI_API_KEY` : Your openai api key
       - `PROJECT_ID`: Your Firebase project ID from step 4b.
       - `COLLECTION_NAME`: Your Firestore collection name from step 4c.
