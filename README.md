@@ -14,13 +14,16 @@ This guide will help you set up the environment and run the chatbot application.
 
 * Git
 * Python 3
+* Google Auth
+* Flask
+* Langchain
 
 **Steps:**
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/<your-username>/travel-itinerary-chatbot.git
+   git clone https://github.com/gargshailesh/travel-itinerary-chatbot.git
    ```
 
 2. **Install dependencies:**
@@ -60,8 +63,8 @@ This guide will help you set up the environment and run the chatbot application.
 
 5. **Configure Environment Variables:**
 
-   a. Rename the `.env.example` file to `.env`.
-   b. Set the following environment variables within the `.env` file:
+   * Rename the `.env.example` file to `.env`.
+   * Set the following environment variables within the `.env` file:
       - `GOOGLE_CLIENT_ID`: Your Google client ID from step 3d.
       - `GOOGLE_CLIENT_SECRET`: Your Google client secret from step 3d.
       - `REDIRECT_URI` : For localhost it should be something like "http://127.0.0.1:5000/callback"
