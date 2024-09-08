@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner Helper</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
+    <!-- Prism.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chat-container {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        .user-message {
+            background-color: #e2e8f0;
+        }
+        .bot-message {
+            background-color: #bee3f8;
+        }
+
+        .summary-container {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        pre {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow: auto;
+        }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* High z-index to overlay on top */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="loading-screen">
+        <div>Loading...</div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-600">Travel Planner Helper !!</h1>
+            <form action="/logout" method="GET" onsubmit="showLoading()">
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    Logout
+                </button>
+            </form>
+        </header>
+
+        <main class="bg-white shadow-lg rounded-lg p-6">
+            <p class="text-lg mb-4">Welcome <span class="font-semibold">{{ session['name'] }}</span>, (<span class="text-gray-600">{{ session['email'] }}</span>) !!</p>
+
+            <div class="chat-container mb-6">
+                {% for message in messages %}
+                    <div class="message {% if message.type == 'human' %}user-message{% else %}bot-message{% endif %}">
+                        <strong>{% if message.type == 'human' %}User{% else %}Bot{% endif %}:</strong>
+                        {{ message.content }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form action="/chat" method="POST" class="mt-4" onsubmit="showLoading()">
+                <div class="flex">
+                    <input type="text" name="user_text" class="flex-grow mr-2 p-2 border border-gray-300 rounded" placeholder="Type your message...">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        Submit
+                    </button>
+                </div>
+            </form>
+
+            <form action="/clear_session" method="GET" class="mt-4" onsubmit="showLoading()">
+                <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                    Clear Session
+                </button>
+            </form>
+        </main>
+
+        <main class="bg-white shadow-lg rounded-lg p-6">
+            <form action="/summarize" method="GET" class="mt-4" onsubmit="showLoading()">
+                <div class="flex">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        Summarize Chat
+                    </button>
+                </div>
+            </form>
+            
+            {% if summary != None %}
+                <div class="summary-container">
+                    <h2>Summary Data:</h2>
+                    <pre><code class="language-json">{{ summary | safe }}</code></pre>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading-screen').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

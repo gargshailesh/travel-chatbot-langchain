@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "travel-chatbot-langchain"
+version = "0.1.0"
+description = "Sample travel chat bot app built using flask and langchain framework"
+authors = ["Shailesh"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+langchain = "^0.2.16"
+google-cloud-firestore = "^2.18.0"
+flask = "^3.0.3"
+google-auth = "^2.34.0"
+google-auth-oauthlib = "^1.2.1"
+python-dotenv = "^1.0.1"
+langchain-openai = "^0.1.23"
+langchain-google-firestore = "^0.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
