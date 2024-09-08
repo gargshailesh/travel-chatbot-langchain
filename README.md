@@ -36,7 +36,7 @@ This guide will help you set up the environment and run the chatbot application.
 3. **Set up Google Authentication:**
 
    * The UI utilizes Google Auth for security.
-   * Refer to the provided code or follow this YouTube tutorial to configure Google Auth for Flask: [Link to Youtube tutorial]
+   * If you are new to Google Auth, Refer to the YouTube tutorial to configure Google Auth for Flask: https://www.youtube.com/watch?v=FKgJEfrhU1E
    * Download your Google credentials JSON file and rename it to `google_client_secret.json`.
    * Note down your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (needed for step 5).
 
